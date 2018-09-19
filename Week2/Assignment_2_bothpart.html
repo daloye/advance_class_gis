@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Intro to FeatureLayer - 4.8</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.8/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.8/"></script>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    require([
+        "esri/Map",
+        "esri/views/MapView",
+
+        "esri/layers/FeatureLayer",
+
+        "dojo/domReady!"
+      ],
+      function(
+        Map, MapView,
+        FeatureLayer
+      ) {
+
+        var map = new Map({
+          basemap: "hybrid"
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: map,
+          zoom: 7,
+         center:[-122.335167,47.608013]
+          
+
+        
+        });
+
+        /********************
+         * Add feature layer
+         ********************/
+         var featureLayer_1 = new FeatureLayer({
+        url: "http://services.arcgis.com/JbibFpsuaEQr3FFG/arcgis/rest/services/State_to_State_Migration/FeatureServer"
+        
+        });
+        
+        
+
+        var featureLayer_2 = new FeatureLayer({
+          url: "https://services3.arcgis.com/DLryYCwhA8W7Jq7Q/arcgis/rest/services/Parks/FeatureServer"
+        });
+
+       
+
+        map.add(featureLayer_1);
+        map.add(featureLayer_2);
+
+      });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
